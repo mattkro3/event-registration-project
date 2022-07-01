@@ -8,7 +8,7 @@ accountRouter.post('/login', function(req, res) {
   accountController.login(req, res)
 })
 
-// POST /api/acounts/register
+// POST /api/acounts/registerj
 accountRouter.post('/register', function(req, res) {
   console.log('/accounts/register')
   accountController.register(req, res)
