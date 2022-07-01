@@ -1,1 +1,1 @@
-# event-registration-project
+# Project Microservice
