@@ -2,6 +2,8 @@ import mongoose from 'mongoose'
 import s from 'mongoose-sequence'
 const sequence = s(mongoose)
 
+//test
+
 const { Schema, model } = mongoose
 
 const customerSchema = new Schema({
