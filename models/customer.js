@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 import s from 'mongoose-sequence'
 const sequence = s(mongoose)
 
-//test
+// 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
 
 const { Schema, model } = mongoose
 
