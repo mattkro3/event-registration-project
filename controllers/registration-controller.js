@@ -52,4 +52,4 @@ const registrationController = {
 
 } 
 
-export default registrationController 
+export default registrationController
