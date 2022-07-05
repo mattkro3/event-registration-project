@@ -1,6 +1,6 @@
 import express from 'express'
 var registrationsRouter = express.Router()
-import registrationsController from '../registrations/registrations-controller.js'
+import registrationsController from '../controllers/registrations-controller.js'
 
 
 
