@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import Customer from '../models/customer.js'
 import Event from '../models/event.js'
-import Registration from '../models/registrations.js'
+import Registration from '../models/registration.js'
 
 
 function dropCollections() {
@@ -69,7 +69,6 @@ function dropCollections() {
             REGISTRATION_DATE: '2022-11-4 00:00:00.0', 
             NOTES: 'n/a'
           }))})
-
   }
  
   export default function init_db() {

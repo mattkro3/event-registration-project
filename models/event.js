@@ -11,7 +11,7 @@ const eventSchema = new Schema({
   DESCRIPTION: String
 })
 
-eventSchema.plugin(sequence, {inc_field: 'EVENT_ID'}) 
+eventSchema.plugin(sequence, {inc_field: 'EVENT_ID'})
 
 const Event = model('Event', eventSchema )
 export default Event

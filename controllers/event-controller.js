@@ -2,8 +2,8 @@ import Event from '../models/event.js'
 import dataCleaner from '../utilities/data-cleaner.js'
 
 const eventController = {
-  
-  // GET /api/events/
+
+  // GET /api/events
   getAllEvents: function(req, res) {
     Event.find({}, '', function(err, events){
       if(err|| !events || events.length == 0 ) {
@@ -12,12 +12,12 @@ const eventController = {
         res.status(200).send(dataCleaner.cleanEvents(events))
       }
     }) 
-  }, 
+  },
 
   // GET /api/events/:event_id
-  getEventByID: function(req, res) {
+  getEventById: function(req, res) {
     Event.findOne({'EVENT_ID': req.params.event_id}, '', function(err, event){
-      if(err || !event) {
+      if(err || ! event) {
         res.sendStatus(404)
       } else {
         res.status(200).send(dataCleaner.cleanEvent(event))
@@ -25,8 +25,8 @@ const eventController = {
     })
   },
 
-  // POST /api/events/
-  postEvent: function(req, res) {
+  // POST /api/events
+  postEvent: function (req, res) {
     Event.create({ EVENT_CODE: req.body.code, TITLE: req.body.title, DESCRIPTION: req.body.description}).then(
       (e) => { 
         res.location(`/api/events/${e.EVENT_ID}`)
@@ -37,7 +37,7 @@ const eventController = {
   },
 
   // DELETE /api/events/:event_id
-  deleteEventByID: function(req, res) {
+  deleteEventByID: function (req, res) {
     Event.deleteOne({'EVENT_ID': req.params.event_id}, function(err){
       if(err) {
         res.sendStatus(500)
