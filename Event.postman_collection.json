@@ -119,46 +119,6 @@
 				}
 			},
 			"response": []
-		},
-		{
-			"name": "DELETE A event",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Able to delete an event\", function() {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8000/api/events/:event_id",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"events",
-						":event_id"
-					],
-					"variable": [
-						{
-							"key": "event_id",
-							"value": ""
-						}
-					]
-				}
-			},
-			"response": []
 		}
 	]
 }
