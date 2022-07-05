@@ -7,7 +7,7 @@ const { Schema, model } = mongoose
 const registrationsSchema = new Schema({
     
     REGISTRATIONS_ID:Number,
-    REGISTRATIONS_DATE: Number,
+    REGISTRATIONS_DATE: Date,
     NOTES: String,
     EVENT_ID:Number,
     CUSTOMER_ID:Number,

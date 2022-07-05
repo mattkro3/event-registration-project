@@ -26,5 +26,9 @@ registrationsRouter.delete('/:registrations_id', function(req, res) {
     registrationsController.deleteregistrationsByID(req, res)
   })
 
+<<<<<<< HEAD
 
   export default registrationsRouter
+=======
+export default registrationsRouter
+>>>>>>> 4ce110ea16a0239daf18055a121d116e6cf9c4cd
