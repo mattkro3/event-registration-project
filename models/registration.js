@@ -4,17 +4,15 @@ const sequence = s(mongoose)
 
 const { Schema, model } = mongoose
 
-const registrationsSchema = new Schema({
-    
-    REGISTRATIONS_ID:Number,
-    REGISTRATIONS_DATE: Date,
-    NOTES: String,
-    EVENT_ID:Number,
-    CUSTOMER_ID:Number,
-
+const registrationSchema = new Schema({
+  REGISTRATION_ID: Number,
+  EVENT_ID: Number, 
+  CUSTOMER_ID: Number,
+  REGISTRATION_DATE: Date,
+  NOTES: String
 })
 
-registrationsSchema.plugin(sequence, {inc_field: ' REGISTRATIONS_ID'}) 
+registrationSchema.plugin(sequence, {inc_field: 'REGISTRATION_ID'})
 
-const registrations = model('registraions', registrationsSchema )
-export default registrations
+const Registration = model('Registration', registrationSchema )
+export default Registration

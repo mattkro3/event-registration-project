@@ -1,6 +1,5 @@
 import Customer from '../models/customer.js'
-import Event from '../models/event.js'
-import registrations from '../models/registrations.js'
+import registrationRouter from '../routes/registration-routes.js'
 
 const dataCleaner = {
 
@@ -11,7 +10,7 @@ const dataCleaner = {
       password: customer.PASSWORD,
       email: customer.EMAIL 
     }
-  },  
+  }, 
 
   cleanCustomers: ( customers ) => {
     var results = []
@@ -26,9 +25,9 @@ const dataCleaner = {
       id: event.EVENT_ID,
       code: event.EVENT_CODE,
       title: event.TITLE,
-      description: event.DESCRIPTION 
+      description: event.DESCRIPTION
     }
-  },  
+  }, 
 
   cleanEvents: ( events ) => {
     var results = []
@@ -36,25 +35,27 @@ const dataCleaner = {
       results.push(dataCleaner.cleanEvent(events[e]))
     }
     return results
-  }
+  },
 
-  ,cleanregistrations: ( event ) => {
+  cleanRegistration: ( registration ) => {
     return {
-      REGISTRATIONS_ID:registrations.REGISTRATIONS_ID,
-      REGISTRATIONS_DATE: registrations.REGISTRATIONS_DATE,
-      NOTES: registrations.NOTES,
-      EVENT_ID:registrations.EVENT_ID,
-      CUSTOMER_ID:registrations.CUSTOMER_ID, 
+      id: registration.REGISTRATION_ID,
+      event_id: registration.EVENT_ID,
+      customer_id: registration.CUSTOMER_ID,
+      registration_date: registration.REGISTRATION_DATE,
+      notes: registration.NOTES
     }
-  },  
+  }, 
 
-  cleanregistrations: ( events ) => {
+  cleanRegistrations: ( registrations ) => {
     var results = []
     for( const r in registrations) {
-      results.push(dataCleaner.cleanregistrations(registrations[r]))
+      results.push(dataCleaner.cleanRegistration(registrations[r]))
     }
     return results
-  }
+  } 
+
+
 
 }
 

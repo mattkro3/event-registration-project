@@ -1,58 +1,47 @@
-import registrations from '../models/registrations.js'
+import Registration from '../models/registration.js'
 import dataCleaner from '../utilities/data-cleaner.js'
 
-const registrationsController = {
-  
-  // GET /api/registrations/
-  getAllregistrations: function(req, res) {
-    registrations.find({}, '', function(err, registrations){
-      if(err|| !registrations || registrations.length == 0 ) {
+const registrationController = {
+
+  // GET /api/registrations
+  getAllRegistrations: function(req, res) {
+    Registration.find({}, '', function(err, registrations){
+      if(err|| !registrations || registrations.length == 0 ){
         res.sendStatus(404)
-      } else {
-        res.status(200).send(dataCleaner.cleanCustomers(customers))
-      }
+      } 
+      res.status(200).send(dataCleaner.cleanRegistrations(registrations))      
     }) 
-  }, 
-// GET /api/registrations/:registrations_id
-getregistrationsByID: function(req, res) {
-    registrations.findOne({'REGISTRATIONS_ID': req.params.registrations_id}, '', function(err, registrations){
-      if(err || ! registrations) {
-        res.sendStatus(404)
-      } else {
-        res.status(200).send(dataCleaner.cleanCustomer(registrations))
-      }
-    })
   },
 
-
-
-
-
-  // GET /api/customers/:customer_id
-  getCustomerByID: function(req, res) {
-    Customer.findOne({'CUSTOMER_ID': req.params.customer_id}, '', function(err, customer){
-      if(err || ! customer) {
+  // GET /api/registrations/:registration_id
+  getRegistrationById: function(req, res) {
+    Registration.findOne({'REGISTRATION_ID': req.params.registration_id}, '', function(err, registration){
+      if(err || ! registration) {
         res.sendStatus(404)
       } else {
-        res.status(200).send(dataCleaner.cleanCustomer(customer))
+        res.status(200).send(dataCleaner.cleanRegistration(registration))
       }
     })
   },
 
   // POST /api/registrations/
-  postregistrations: function(req, res) {
-    registrations.create({ REGISTRATIONS_DATE: req.body.date, NOTES: req.body.notes, EVENT_ID: req.body.event_id,CUSTOMER_ID: req.body.customer_id}).then(
+  postRegistration: function(req, res) {
+    Registration.create({ 
+        EVENT_ID: req.body.event_id, 
+        CUSTOMER_ID: req.body.customer_id, 
+        REGISTRATION_DATE: req.body.registration_date, 
+        NOTES: req.body.notes}).then(
       (r) => { 
-        res.location(`/api/registrations/${r.REGISTRATIONS_ID}`)
+        res.location(`/api/registrations/${r.REGISTRATION_ID}`)
         res.sendStatus(201)
       }, // OK
       () => res.sendStatus(500) // Error
     )
   },
 
-  // DELETE /api/registrations/:registrations_id
-  deleteregistrationsByID: function(req, res) {
-    registrations.deleteOne({'REGISTRATIONS_ID': req.params.registrations_id}, function(err){
+  // DELETE /api/registrations/:registration_id
+  deleteRegistrationById: function(req, res) {
+    Registration.deleteOne({'REGISTRATION_ID': req.params.registration_id}, function(err){
       if(err) {
         res.sendStatus(500)
       } else {
@@ -63,4 +52,4 @@ getregistrationsByID: function(req, res) {
 
 } 
 
-export default registrationsController
+export default registrationController 
