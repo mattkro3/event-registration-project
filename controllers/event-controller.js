@@ -49,4 +49,4 @@ const eventController = {
 
 } 
 
-export default customerController
+export default eventController
