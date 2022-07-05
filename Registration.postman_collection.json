@@ -86,46 +86,6 @@
 				}
 			},
 			"response": []
-		},
-		{
-			"name": "Delete registration",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"able to delete registraion\", function(){",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8000/api/registrations/:registrationID",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"registrations",
-						":registrationID"
-					],
-					"variable": [
-						{
-							"key": "registrationID",
-							"value": ""
-						}
-					]
-				}
-			},
-			"response": []
 		}
 	]
 }
