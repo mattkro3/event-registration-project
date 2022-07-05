@@ -25,3 +25,6 @@ registrationsRouter.post('/', function(req, res) {
 registrationsRouter.delete('/:registrations_id', function(req, res) {
     registrationsController.deleteregistrationsByID(req, res)
   })
+
+
+  export default registrationsRouter
