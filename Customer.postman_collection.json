@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "0854e85e-5ea1-4116-82e0-a164706b16c9",
-		"name": "Playground",
+		"_postman_id": "cb7b0770-0154-408a-a848-bd9c33afc630",
+		"name": "Customer",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -21,7 +21,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"status code is 201\", function(){",
+							"pm.test(\"Able to post a customer\", function(){",
 							"    pm.response.to.have.status(201);",
 							"});"
 						],
@@ -34,7 +34,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"name\":\"Elton\",\"mail\":\"elton@rock.com\",\"password\":\"rocketman\"}",
+					"raw": "{\"name\":\"Elton\",\"email\":\"elton@rock.com\",\"password\":\"rocketman\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -57,15 +57,21 @@
 			"response": []
 		},
 		{
-			"name": "GET ALL Customer ",
+			"name": "GET ALL Customers",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"status code is 200\", function(){",
+							"pm.test(\"Able to get all customers\", function(){",
 							"    pm.response.to.have.status(200);",
-							"});"
+							"});",
+							"",
+							"const resp = pm.response.json();",
+							"const sample_customer_id = resp[0]['id'];",
+							"const sample_customer_name = resp[0]['name']",
+							"pm.globals.set(\"sample_customer_id\", sample_customer_id);",
+							"pm.globals.set(\"sample_customer_name\", sample_customer_name);"
 						],
 						"type": "text/javascript"
 					}
@@ -84,6 +90,127 @@
 					"path": [
 						"api",
 						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET A Customer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Able to get one customer\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/customers/:customer_id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"customers",
+						":customer_id"
+					],
+					"variable": [
+						{
+							"key": "customer_id",
+							"value": "{{sample_customer_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET A Customer By Name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Able to get one customer by name\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/customers/byname/:customer_name",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"customers",
+						"byname",
+						":customer_name"
+					],
+					"variable": [
+						{
+							"key": "customer_name",
+							"value": "{{sample_customer_name}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE A Customer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Able to delete a customer\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/customers/:customer_id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"customers",
+						":customer_id"
+					],
+					"variable": [
+						{
+							"key": "customer_id",
+							"value": "{{sample_customer_id}}"
+						}
 					]
 				}
 			},

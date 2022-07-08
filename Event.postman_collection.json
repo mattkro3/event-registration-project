@@ -1,20 +1,67 @@
 {
 	"info": {
-		"_postman_id": "03d83983-db64-4718-a4fc-5d9ef2975d92",
-		"name": "Events",
+		"_postman_id": "9a1e8c51-5beb-488d-a555-544c2164a96d",
+		"name": "Event",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "GET ALL events",
+			"name": "POST A Event",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function() {",
-							"    pm.response.to.have.status(200);",
+							"pm.test(\"Able to post one event\", function() {",
+							"    pm.response.to.have.status(201);",
 							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"event_code\": \"ABC001\", \"title\": \"Sample Event\", \"description\": \"Postman test event\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/events",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ALL Events",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Able to get all events\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const resp = pm.response.json();",
+							"const sample_event_id = resp[0]['id'];",
+							"console.info(sample_event_id);",
+							"pm.globals.set(\"sample_event_id\", sample_event_id);"
 						],
 						"type": "text/javascript"
 					}
@@ -39,7 +86,7 @@
 			"response": []
 		},
 		{
-			"name": "GET A event",
+			"name": "GET A Event",
 			"event": [
 				{
 					"listen": "test",
@@ -71,7 +118,7 @@
 					"variable": [
 						{
 							"key": "event_id",
-							"value": ""
+							"value": "{{sample_event_id}}"
 						}
 					]
 				}
@@ -79,34 +126,27 @@
 			"response": []
 		},
 		{
-			"name": "POST A event",
+			"name": "DELETE A Event",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Able to post one event\", function() {",
-							"    pm.response.to.have.status(201);",
-							"});"
+							"pm.test(\"Able to delete an event\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
-				"method": "POST",
+				"method": "DELETE",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"code\": \"\", \"title\": \"\", \"description\": \"\"}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "http://localhost:8000/api/events",
+					"raw": "http://localhost:8000/api/events/:event_id",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -114,7 +154,14 @@
 					"port": "8000",
 					"path": [
 						"api",
-						"events"
+						"events",
+						":event_id"
+					],
+					"variable": [
+						{
+							"key": "event_id",
+							"value": "{{sample_event_id}}"
+						}
 					]
 				}
 			},

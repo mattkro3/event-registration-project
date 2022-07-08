@@ -1,52 +1,12 @@
 {
 	"info": {
-		"_postman_id": "3f126b15-8a6a-4530-a988-76390a17d45a",
-		"name": "Registraion",
+		"_postman_id": "b110488b-ec54-41c4-b0b0-d5b06d342b99",
+		"name": "Registration",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Get Registration",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"able to get registraion_id\", function(){",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8000/api/registrations/:registrationID",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"registrations",
-						":registrationID"
-					],
-					"variable": [
-						{
-							"key": "registrationID",
-							"value": ""
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Post Registraion",
+			"name": "POST A Registration",
 			"event": [
 				{
 					"listen": "test",
@@ -82,6 +42,124 @@
 					"path": [
 						"api",
 						"registrations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ALL Registrations",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Able to get all registrations\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const resp = pm.response.json();",
+							"const sample_reg_id = resp[0]['id'];",
+							"console.info(sample_reg_id);",
+							"pm.globals.set(\"sample_reg_id\", sample_reg_id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/registrations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"registrations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET A Registration",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Able to get a registraion\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/registrations/:registration_id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"registrations",
+						":registration_id"
+					],
+					"variable": [
+						{
+							"key": "registration_id",
+							"value": "{{sample_reg_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE A Registration",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Able to delete a registraion\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/registrations/:registration_id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"registrations",
+						":registration_id"
+					],
+					"variable": [
+						{
+							"key": "registration_id",
+							"value": "{{sample_reg_id}}"
+						}
 					]
 				}
 			},
