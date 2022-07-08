@@ -25,7 +25,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"name\":\"Elton\",\"title\": \"All-Java Conference\",\"registration_date\":\"2019-01-01\", \"notes\": \"looking forward to the event\"}",
+					"raw": "{\"customer_id\": {{sample_customer_id}},\"event_id\": {{sample_event_id}},\"registration_date\":\"2019-01-01\", \"notes\": \"looking forward to the event\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -59,8 +59,7 @@
 							"});",
 							"",
 							"const resp = pm.response.json();",
-							"const sample_reg_id = resp[0]['id'];",
-							"console.info(sample_reg_id);",
+							"const sample_reg_id = resp[resp.length - 1]['id'];",
 							"pm.globals.set(\"sample_reg_id\", sample_reg_id);"
 						],
 						"type": "text/javascript"

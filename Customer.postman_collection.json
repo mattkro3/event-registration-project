@@ -68,7 +68,7 @@
 							"});",
 							"",
 							"const resp = pm.response.json();",
-							"const sample_customer_id = resp[0]['id'];",
+							"const sample_customer_id = resp[resp.length - 1]['id'];",
 							"const sample_customer_name = resp[0]['name']",
 							"pm.globals.set(\"sample_customer_id\", sample_customer_id);",
 							"pm.globals.set(\"sample_customer_name\", sample_customer_name);"

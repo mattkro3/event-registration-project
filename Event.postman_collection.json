@@ -25,7 +25,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"event_code\": \"ABC001\", \"title\": \"Sample Event\", \"description\": \"Postman test event\"}",
+					"raw": "{\"code\": \"ABC001\", \"title\": \"Sample Event\", \"description\": \"Postman test event\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -59,8 +59,7 @@
 							"});",
 							"",
 							"const resp = pm.response.json();",
-							"const sample_event_id = resp[0]['id'];",
-							"console.info(sample_event_id);",
+							"const sample_event_id = resp[resp.length - 1]['id'];",
 							"pm.globals.set(\"sample_event_id\", sample_event_id);"
 						],
 						"type": "text/javascript"
