@@ -25,7 +25,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"customer_id\": {{sample_customer_id}},\"event_id\": {{sample_event_id}},\"registration_date\":\"2019-01-01\", \"notes\": \"looking forward to the event\"}",
+					"raw": "{\"customer_id\": 3,\"event_id\": 1,\"registration_date\":\"2019-01-01\", \"notes\": \"looking forward to the event\"}",
 					"options": {
 						"raw": {
 							"language": "json"
